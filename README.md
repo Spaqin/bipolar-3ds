@@ -14,7 +14,7 @@ There's no warranty on this software. I am not responsible for bricks, lonelines
 While it compiles to 3dsx, there's little chance it will work. Maybe when launched from HBLL, but then what's the point?
 
 # Thanks
-MarcusD for reverse engineering mcu::HWC.
-3dbrew for working a while.
-Yellows8 for making me scared for my console because of that one mcu brick.
+MarcusD for reverse engineering mcu::HWC.  
+3dbrew for working a while.  
+Yellows8 for making me scared for my console because of that one mcu brick.  
 The guys behind libctru.
