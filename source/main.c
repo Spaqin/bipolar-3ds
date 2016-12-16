@@ -24,6 +24,17 @@ Result mcuSetPowerLEDPattern(u8 pattern)
     return ipc[1];
 }
 
+//https://www.3dbrew.org/wiki/MCUHWC:SetWifiLEDState
+Result mcuSetWifiLEDState(u8 state)
+{
+    u32* ipc = getThreadCommandBuffer();
+    ipc[0] = 0x70040;
+    ipc[1] = state;
+    Result ret = svcSendSyncRequest(mcuhwcHandle);
+    if(ret < 0) return ret;
+    return ipc[1];
+}
+
 Result mcuGetBatteryLevel(u8* out)
 {
     u32* ipc = getThreadCommandBuffer();
@@ -34,9 +45,6 @@ Result mcuGetBatteryLevel(u8* out)
     return ipc[1];
 }
 
-
-
-
 int main()
 {
 
@@ -46,7 +54,7 @@ int main()
 	//Initialize console on top screen. Using NULL as the second argument tells the console library to use the internal console structure as current one
 	consoleInit(GFX_TOP, NULL);
 
-	u8 batteryPercentage; 
+	u8 batteryPercentage;
 	mcuInit();
 	mcuGetBatteryLevel(&batteryPercentage);
 	mcuExit();
@@ -54,6 +62,8 @@ int main()
 	puts("====BiPoLAR v0.01 by Spaqin====\nProgram will automatically quit after an action was taken");
 	puts("Press X to disable Power LED.");
 	puts("Press Y to enable it.");
+  puts("Press A to disable Wifi LED.");
+  puts("Press B to enable it.");
 	puts("Press START to exit.\n");
 	printf("btw your battery %%: %d%%\n", batteryPercentage);
 
@@ -81,6 +91,20 @@ int main()
 			mcuExit();
 			break;
 		}
+    if (kDown & KEY_A)
+    {
+      mcuInit();
+      mcuSetWifiLEDState(0);
+      mcuExit();
+      break;
+    }
+    if (kDown & KEY_B)
+    {
+      mcuInit();
+      mcuSetWifiLEDState(1);
+      mcuExit();
+      break;
+    }
 	}
 
 	// Exit services
