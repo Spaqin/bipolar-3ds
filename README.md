@@ -13,6 +13,12 @@ There's no warranty on this software. I am not responsible for bricks, lonelines
 
 While it compiles to 3dsx, there's little chance it will work. Maybe when launched from HBLL, but then what's the point?
 
+# Building
+```
+make
+make cia
+```
+
 # Thanks
 MarcusD for reverse engineering mcu::HWC. And helping me a lot on the side.  
 3dbrew for working a while.  
