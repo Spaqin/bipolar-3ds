@@ -1,0 +1,17 @@
+#!/bin/sh
+# This is mainly to keep TravisCI happy, so this'll only work on Ubuntu.
+cd /tmp/
+wget http://sourceforge.net/projects/devkitpro/files/Automated%20Installer/devkitARMupdate.pl
+chmod +x devkitARMupdate.pl
+sudo ./devkitARMupdate.pl /opt/devkitPro
+echo "export DEVKITPRO=/opt/devkitPro" >> ~/.bashrc
+echo "export DEVKITARM=\$DEVKITPRO/devkitARM" >> ~/.bashrc
+echo "export PATH=\$PATH:\$DEVKITARM/bin" >> ~/.bashrc
+source ~/.bashrc
+wget https://github.com/profi200/Project_CTR/releases/download/0.15/makerom_015_ctrtool.zip
+sudo apt-get update
+sudo apt-get install unzip
+unzip makerom_015_ctrtool.zip
+cd Linux_x86_64
+chmod +x *
+sudo mv * /usr/bin/
